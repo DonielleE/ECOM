@@ -7,52 +7,46 @@ const sequelize = require('../config/connection');
 class Product extends Model {}
 
 // set up fields and rules for Product model
+
+module.exports = Product;
+
 Product.init(
   {
-    // define columns
-    id:{
-      type: DataTypes.INTEGER,
+    id: {
+    type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
-     }
-  },
-  {
+    }, 
     product_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
-  },
-  {
-    price:{
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-      validator: {
-        isDecimal: true,
-      }
-    }
-
-  },
-  {
-    stock:{
-      type:DataTypes.INTEGER,
-       allowNull: false,
-       defaultValue: 10,
-       validator:{
-         isNumeric: true,
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      price:{
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+          isDecimal: true,
+        }
+      },
+  
+      stock:{
+        type:DataTypes.INTEGER,
+         allowNull: false,
+         defaultValue: 10,
+         validate:{
+           isNumeric: true,
+         }
+      },
+      cateory_id:{
+        type: DataTypes.INTEGER,
+        refrences: {
+          model: "category",
+          key: "id"
        }
-    }
   },
-  {
-    cateory_id:{
-      type: DataTypes.INTEGER,
-      refrences: {
-        Model: "category",
-        key: "id"
-      }
+},
 
-    }
-  },
   {
     sequelize,
     timestamps: false,
@@ -61,5 +55,3 @@ Product.init(
     modelName: 'product',
   }
 );
-
-module.exports = Product;
