@@ -8,8 +8,6 @@ class Product extends Model {}
 
 // set up fields and rules for Product model
 
-module.exports = Product;
-
 Product.init(
   {
     id: {
@@ -55,3 +53,5 @@ Product.init(
     modelName: 'product',
   }
 );
+
+module.exports = Product;
